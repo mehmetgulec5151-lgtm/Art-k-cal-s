@@ -1,0 +1,42 @@
+import pygame
+import time
+import random
+
+pygame.init()
+
+# Renkler
+beyaz = (255, 255, 255)
+siyah = (0, 0, 0)
+kirmizi = (213, 50, 80)
+yesil = (0, 255, 0)
+mavi = (50, 153, 213)
+
+# Ekran boyutu
+genislik = 600
+yukseklik = 400
+ekran = pygame.display.set_mode((genislik, yukseklik))
+pygame.display.set_caption('Yılan Oyunu')
+
+# Saat
+saat = pygame.time.Clock()
+yilan_hizi = 15
+yilan_boyutu = 10
+
+# Font
+font_stil = pygame.font.SysFont("bahnschrift", 25)
+skor_font = pygame.font.SysFont("comicsansms", 35)
+
+def skoru_goster(skor):
+    deger = skor_font.render("Skor: " + str(skor), True, siyah)
+    ekran.blit(deger, [0, 0])
+
+def yilan(yilan_boyutu, yilan_liste):
+    for x in yilan_liste:
+        pygame.draw.rect(ekran, siyah, [x[0], x[1], yilan_boyutu, yilan_boyutu])
+
+def mesaj(msg, renk):
+    mes = font_stil.render(msg, True, renk)
+    ekran.blit(mes, [genislik / 6, yukseklik / 3])
+
+def oyun():
+    oyun_durum = False
